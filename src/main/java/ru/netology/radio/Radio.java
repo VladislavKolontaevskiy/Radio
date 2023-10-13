@@ -1,37 +1,64 @@
 package ru.netology.radio;
 
 public class Radio {
-
+    private int maxStation = 9;
+    private int minStation = 0;
     private int currentStation;
+    private int maxVolume = 100;
+    private int minVolume = 0;
     private int currentVolume;
+
+    public Radio() {
+
+        this.maxStation = maxStation;
+        this.minStation = minStation;
+        this.currentStation = currentStation;
+
+    }
+
+    public Radio(int stationCount) {
+
+        maxStation = stationCount - 1;
+    }
+
+    public int getMaxStation() {
+        return maxStation;
+    }
+
+    public int getMinStation() {
+
+        return minStation;
+    }
+
     public void next() {
-        if (currentStation != 9) {
+        if (currentStation != maxStation) {
             currentStation++;
         } else {
-            currentStation = 0;
+            currentStation = getMinStation();
         }
     }
 
     public void prev() {
-        if (currentStation != 0) {
+        if (currentStation != minStation) {
             currentStation--;
         } else {
-            currentStation = 9;
+            currentStation = maxStation;
         }
     }
 
     public int getCurrentStation() {
+
         return currentStation;
     }
 
     public void setCurrentStation(int newCurrentStation) {
-        if (newCurrentStation < 0) {
+        if (newCurrentStation < minStation) {
             return;
         }
-        if (newCurrentStation > 9) {
+        if (newCurrentStation > maxStation) {
             return;
         }
-       currentStation = newCurrentStation;
+        currentStation = newCurrentStation;
     }
 
     public int getCurrentVolume() {
@@ -39,26 +66,25 @@ public class Radio {
     }
 
     public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume < 0) {
+        if (newCurrentVolume < minVolume) {
             return;
         }
-        if (newCurrentVolume > 100) {
+        if (newCurrentVolume > maxVolume) {
             return;
         }
         currentVolume = newCurrentVolume;
     }
 
     public void increaseVolume() {
-        if (currentVolume < 100) {
+        if (currentVolume < maxVolume) {
             currentVolume = currentVolume + 1;
         }
     }
 
     public void reduceVolume() {
-        if (currentVolume > 0) {
+        if (currentVolume > minVolume) {
             currentVolume = currentVolume - 1;
         }
     }
 }
-
 
